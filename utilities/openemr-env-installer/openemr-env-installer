@@ -31,7 +31,7 @@ then
 	echo -e "\033[30m===>\033[0m \033[32mInstalling git... \033[0m"
 	echo ''
 	case "$os_distribution" in
-		ubuntu|debian)
+		system76|ubuntu|debian)
 			sudo apt-get update -y
     		sudo apt-get install git -y
 			;;
@@ -191,7 +191,7 @@ sudo systemctl start docker &>/dev/null
 if [ $? -ne 0 ]
 then
 	case "$os_distribution" in
-		ubuntu|debian)
+		system76|ubuntu|debian)
  				echo -e "\033[30m===>\033[0m \033[32mUpdate the apt package index and install packages to allow apt to use a repository over HTTPS... \033[0m"
 				echo ''
 				sudo apt-get update -y
@@ -283,7 +283,7 @@ then
 	echo -e "\033[30m===>\033[0m \033[32mInstalling openemr-cmd... \033[0m"
     echo ''
 	case "$os_distribution" in
-	ubuntu|debian)
+	system76|ubuntu|debian)
 		sudo curl -L https://raw.githubusercontent.com/openemr/openemr-devops/master/utilities/openemr-cmd/openemr-cmd -o /usr/local/bin/openemr-cmd
 		sudo chmod +x /usr/local/bin/openemr-cmd
 		echo ''
@@ -324,7 +324,7 @@ run_cluster_tip() {
 install_conntrack() {
 os_distribution=$(grep ^HOME_URL /etc/os-release| awk -F'[/.]' '{print $(NF-2)}')
 case "$os_distribution" in
-	ubuntu|debian)
+	system76|ubuntu|debian)
  			echo -e "\033[30m===>\033[0m \033[32mInatalling conntrack package... \033[0m"
 			echo ''
 			sudo apt-get update -y
@@ -433,7 +433,7 @@ then
 	major_release=$(grep VERSION_ID /etc/os-release | awk -F'[.]' '{print $1}' | awk -F'["]' '{print $2}')
 	os_distribution=$(grep ^HOME_URL /etc/os-release| awk -F'[/.]' '{print $(NF-2)}')
 	case "$os_distribution" in
-		ubuntu)
+		system76|ubuntu)
 			if [ "$major_release" -lt  "16" ]
 			then
 				echo 'The script only supports ubuntu 16.04 or later.'
